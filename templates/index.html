@@ -13,7 +13,12 @@
   <form action="/bookmarks" method="post" class="add-form">
     <input type="url" name="url" placeholder="https://example.com" required>
     <input type="text" name="name" placeholder="Name" required>
-    <input type="text" name="category" placeholder="Category" required>
+    <input type="text" name="category" placeholder="Category" list="category-list" autocomplete="off" required>
+    <datalist id="category-list">
+      {% for name in category_names %}
+      <option value="{{ name }}"></option>
+      {% endfor %}
+    </datalist>
     <button type="submit">Add</button>
   </form>
 
@@ -22,8 +27,8 @@
   {% endif %}
 
   {% for category, items in categories.items() %}
-  <section class="folder">
-    <h2 class="folder-title">{{ category }}</h2>
+  <details class="folder" open>
+    <summary class="folder-title">{{ category }}</summary>
     <div class="card-grid">
       {% for item in items %}
       <a class="card" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
@@ -37,7 +42,7 @@
       </a>
       {% endfor %}
     </div>
-  </section>
+  </details>
   {% endfor %}
 </div>
 

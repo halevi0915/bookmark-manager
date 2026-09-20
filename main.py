@@ -47,7 +47,12 @@ def home(request: Request):
     for i, b in enumerate(bookmarks):
         categories.setdefault(b["category"], []).append({**b, "id": i})
     return templates.TemplateResponse(
-        request, "index.html", {"categories": categories}
+        request,
+        "index.html",
+        {
+            "categories": categories,
+            "category_names": sorted(categories.keys()),
+        },
     )
 
 
