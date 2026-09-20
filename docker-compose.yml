@@ -1,0 +1,11 @@
+services:
+  bookmark-manager:
+    build: .
+    container_name: bookmark-manager
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DATA_FILE=/app/data/bookmarks.txt
+    restart: unless-stopped

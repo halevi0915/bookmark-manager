@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Data (personal bookmarks shouldn't be committed)
+data/*.txt
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Env
+.env

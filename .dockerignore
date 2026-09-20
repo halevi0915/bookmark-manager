@@ -1,0 +1,12 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.dockerignore
+data/*.txt
+.vscode/
+.idea/
+.DS_Store
+README.md

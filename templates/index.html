@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookmarks</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Bookmarks</h1>
+
+  <form action="/bookmarks" method="post" class="add-form">
+    <input type="url" name="url" placeholder="https://example.com" required>
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="category" placeholder="Category" required>
+    <button type="submit">Add</button>
+  </form>
+
+  {% if not categories %}
+    <p class="empty">No bookmarks yet.</p>
+  {% endif %}
+
+  {% for category, items in categories.items() %}
+  <section class="folder">
+    <h2 class="folder-title">{{ category }}</h2>
+    <div class="card-grid">
+      {% for item in items %}
+      <a class="card" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+        <div class="card-body">
+          <span class="bookmark-name">{{ item.name }}</span>
+          <span class="bookmark-url">{{ item.url }}</span>
+        </div>
+        <div class="card-actions">
+          <button class="delete-btn" data-id="{{ item.id }}" title="Delete">✕</button>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</div>
+
+<script>
+document.querySelectorAll(".delete-btn").forEach(btn => {
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const id = btn.dataset.id;
+    await fetch(`/bookmarks/${id}`, { method: "DELETE" });
+    window.location.reload();
+  });
+});
+</script>
+</body>
+</html>
