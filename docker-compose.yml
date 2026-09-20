@@ -1,5 +1,5 @@
 services:
-  bookmark-manager:
+  app:
     build: .
     container_name: bookmark-manager
     ports:
