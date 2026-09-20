@@ -94,7 +94,7 @@ h1 {
 }
 
 .folder-title::before {
-  content: "▸";
+  content: ">";
   display: inline-block;
   font-size: 0.75rem;
   color: var(--muted);
