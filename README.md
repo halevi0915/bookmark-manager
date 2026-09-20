@@ -25,7 +25,7 @@ Avoid using `|` inside a name or category — it's the field separator.
 ### Clone
 
 ```bash
-git clone <your-repo-url> bookmark-manager
+git clone https://github.com/halevi0915/bookmark-manager.git
 cd bookmark-manager
 ```
 
